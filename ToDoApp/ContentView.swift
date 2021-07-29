@@ -19,16 +19,12 @@ struct Task: Identifiable {
 }
 
 struct ContentView: View {
-    var tasks = [
-        Task(title: "料理1", checked: true),
-        Task(title: "料理2", checked: false),
-        Task(title: "料理3", checked: true),
-    ]
+    var userData = UserData()
     
     var body: some View {
         NavigationView{
             List {
-                ForEach(tasks) { task in
+                ForEach(userData.tasks) { task in
                     ListRow(task: task.title, isCheck: task.checked)
                 }
                 Text("Add")
