@@ -15,10 +15,13 @@ struct ListRow: View {
         HStack {
             if isCheck {
                 Text("✅")
+                Text(task)
+                    .strikethrough()
+                    .fontWeight(/*@START_MENU_TOKEN@*/.ultraLight/*@END_MENU_TOKEN@*/)
             } else {
                 Text("□")
+                Text(task)
             }
-            Text(task)
         }
     }
 }
