@@ -26,8 +26,17 @@ struct ContentView: View {
                     .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
             }
             .navigationBarTitle(Text("ToDo"))
-            .navigationBarItems(trailing: Text("Delete"))
+            .navigationBarItems(trailing: Button(action: {
+                DeleteTask()
+            }, label: {
+                Text("Delete")
+            }))
         }
+    }
+    
+    func DeleteTask() {
+        let neccessaryTask = self.userData.tasks.filter({!$0.checked})
+        self.userData.tasks = neccessaryTask
     }
 }
 
