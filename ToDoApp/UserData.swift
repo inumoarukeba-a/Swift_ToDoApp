@@ -13,4 +13,6 @@ class UserData: ObservableObject {
         Task(title: "料理2", checked: false),
         Task(title: "料理3", checked: true),
     ]
+    
+    @Published var isEditing: Bool = false
 }

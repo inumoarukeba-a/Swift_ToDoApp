@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    @ObservedObject var userData = UserData()
+    @EnvironmentObject var userData: UserData
     
     var body: some View {
         NavigationView{
@@ -22,8 +22,17 @@ struct ContentView: View {
                         ListRow(task: task.title, isCheck: task.checked)
                     }
                 }
-                Text("Add")
-                    .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
+                if self.userData.isEditing {
+                    Draft()
+                }
+                else {
+                    Button(action: {
+                        self.userData.isEditing = true
+                    }, label: {
+                        Text("+")
+                            .font(.title)
+                    })
+                }
             }
             .navigationBarTitle(Text("ToDo"))
             .navigationBarItems(trailing: Button(action: {
@@ -43,5 +52,6 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+            .environmentObject(UserData())
     }
 }
